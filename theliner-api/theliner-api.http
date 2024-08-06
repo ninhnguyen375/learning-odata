@@ -1,0 +1,58 @@
+# Install extension: REST Client 
+
+# Get
+GET http://localhost:5000/odata/users
+Accept: application/json;
+###
+
+# Create
+POST http://localhost:5000/odata/users
+Content-Type: application/json
+
+{
+  "FullName": "abc"
+}
+###
+
+# GET by id
+GET http://localhost:5000/odata/users(3)
+Accept: application/json;
+###
+
+# Update
+PATCH http://localhost:5000/odata/users(3)
+Content-Type: application/json
+
+{
+  "FullName": "edited {{$datetime "DD/MM/YYYY HH:mm:ss" 7 h}}"
+}
+
+###
+# Get
+GET http://localhost:5000/odata/products
+Accept: application/json;
+###
+
+# Create
+POST http://localhost:5000/odata/products
+Content-Type: application/json
+
+{
+  "Name": "iphone X"
+}
+###
+
+# GET by id
+GET http://localhost:5000/odata/products(1)
+Accept: application/json;
+###
+
+# Update
+PATCH http://localhost:5000/odata/products(1)
+Content-Type: application/json
+
+{
+  "Name": "edited {{$datetime "DD/MM/YYYY HH:mm:ss" 7 h}}"
+}
+
+
