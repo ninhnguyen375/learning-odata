@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using theliner_api.Data;
 
@@ -11,9 +12,11 @@ using theliner_api.Data;
 namespace theliner_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240807085944_add-product-details")]
+    partial class addproductdetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,12 +74,12 @@ namespace theliner_api.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<int>("ProductID")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductDetails");
                 });
@@ -126,15 +129,13 @@ namespace theliner_api.Migrations
             modelBuilder.Entity("theliner_api.Models.ProductDetail", b =>
                 {
                     b.HasOne("theliner_api.Models.Product", null)
-                        .WithMany("ProductDetails")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("productDetails")
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("theliner_api.Models.Product", b =>
                 {
-                    b.Navigation("ProductDetails");
+                    b.Navigation("productDetails");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using theliner_api.Data;
 
@@ -11,9 +12,11 @@ using theliner_api.Data;
 namespace theliner_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240807090221_add-product-details2")]
+    partial class addproductdetails2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,7 +129,7 @@ namespace theliner_api.Migrations
             modelBuilder.Entity("theliner_api.Models.ProductDetail", b =>
                 {
                     b.HasOne("theliner_api.Models.Product", null)
-                        .WithMany("ProductDetails")
+                        .WithMany("productDetails")
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -134,7 +137,7 @@ namespace theliner_api.Migrations
 
             modelBuilder.Entity("theliner_api.Models.Product", b =>
                 {
-                    b.Navigation("ProductDetails");
+                    b.Navigation("productDetails");
                 });
 #pragma warning restore 612, 618
         }

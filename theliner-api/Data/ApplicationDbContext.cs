@@ -70,5 +70,6 @@ namespace theliner_api.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductDetail> ProductDetails { get; set; }
     }
 }

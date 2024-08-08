@@ -1,5 +1,6 @@
 # Install extension: REST Client 
 
+### USER
 # Get
 GET http://localhost:5000/odata/users
 Accept: application/json;
@@ -27,9 +28,9 @@ Content-Type: application/json
   "FullName": "edited {{$datetime "DD/MM/YYYY HH:mm:ss" 7 h}}"
 }
 
-###
+### PRODUCT
 # Get
-GET http://localhost:5000/odata/products
+GET http://localhost:5000/odata/products?$filter=contains(Name, 'X')&$expand=ProductDetails&$top=2&skip=0&$count=true
 Accept: application/json;
 ###
 
@@ -38,7 +39,16 @@ POST http://localhost:5000/odata/products
 Content-Type: application/json
 
 {
-  "Name": "iphone X"
+  "Name": "iphone X",
+  "ProductDetails": [
+    {
+      "Desc": "12GB"
+    },
+    
+    {
+      "Desc": "64GB"
+    }
+  ]
 }
 ###
 

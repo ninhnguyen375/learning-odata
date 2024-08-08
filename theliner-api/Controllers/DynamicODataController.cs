@@ -12,8 +12,8 @@ namespace theliner_api.Controllers
     public class DynamicODataController<TEntity> : ODataController
         where TEntity : class
     {
-        private readonly ApplicationDbContext _context;
-        private readonly DbSet<TEntity> _dbSet;
+        public readonly ApplicationDbContext _context;
+        public readonly DbSet<TEntity> _dbSet;
 
         public DynamicODataController(ApplicationDbContext context)
         {
@@ -22,7 +22,7 @@ namespace theliner_api.Controllers
         }
 
         [EnableQuery(PageSize = 2000)]
-        public IActionResult Get()
+        public virtual IActionResult Get()
         {
             return Ok(_dbSet);
         }
@@ -94,6 +94,12 @@ namespace theliner_api.Controllers
     public class ProductsController : DynamicODataController<Product>
     {
         public ProductsController(ApplicationDbContext context)
+            : base(context) { }
+    }
+
+    public class ProductDetailsController : DynamicODataController<ProductDetail>
+    {
+        public ProductDetailsController(ApplicationDbContext context)
             : base(context) { }
     }
 }
